@@ -1,3 +1,3 @@
 # soda
-School report creation webapp
+School report creation webapp.
 Using Django.
