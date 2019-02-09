@@ -1,2 +1,2 @@
 # soda
-school report creation webapp
+School report creation webapp
