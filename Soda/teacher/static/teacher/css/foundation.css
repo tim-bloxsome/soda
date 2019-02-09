@@ -760,7 +760,7 @@ legend {
     margin-left: -0.1875rem;
     padding: 0 0.1875rem; }
 
-/* select {
+select {
   height: 2.4375rem;
   margin: 0 0 1rem;
   padding: 0.5rem;
@@ -805,7 +805,7 @@ legend {
     display: none; }
   select[multiple] {
     height: auto;
-    background-image: none; } */
+    background-image: none; }
 
 .is-invalid-input:not(:focus) {
   border-color: #c60f13;

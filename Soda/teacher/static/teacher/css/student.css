@@ -17,8 +17,6 @@ hr {
     @media print, screen and (min-width: 40em) {
       .sd-form {
         border: 2px solid var(--green-bg-color);
-        /* border-radius: 20px; */
-        /* width: 760px; */
         width: 760px;
         margin: 0rem 0.4rem 1rem 0.4rem;
         padding: 0rem 0 2rem 0; }}
@@ -51,19 +49,14 @@ hr {
     text-align: left;
     color: #7a7a7a;
     line-height: 1;
-    /* margin-bottom: 1.5rem; */
     margin: 2rem;
     align-self: center;
-  
     }
     @media print, screen and (min-width: 40em) {
       .sd-title {
         font-size: 4rem; 
         width: 760px;
-        /* margin-bottom: 2rem  */
     } }
-
-
 
 
 #sd-top {
@@ -107,8 +100,6 @@ hr {
 .sd-form input  {
 	  line-height: inherit;
     color: inherit;
-    /* border-bottom: 1px dashed var(--green-bg-color); */
-
 }
 
 .sd-form [type="radio"] {
@@ -147,10 +138,7 @@ input:focus::-ms-input-placeholder {
 	color: rgb(48, 48, 48, 0.2);
 }
 
-
-
 /* custom range input */
-
 input[type=range].sd {
     -webkit-appearance: none;
     width: 100%;
@@ -179,7 +167,6 @@ input[type=range].sd {
 [type="time"], 
 [type="url"], 
 [type="color"], 
-/* select, */
 textarea {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -208,14 +195,12 @@ textarea {
 [type="time"]:focus, 
 [type="url"]:focus, 
 [type="color"]:focus, 
-/* select:focus, */
 textarea:focus {
     outline: none;
     border: none;
     background-color: transparent;
     -webkit-box-shadow: none;
     box-shadow: none;
-    
 }
 
 label {
@@ -237,9 +222,7 @@ label {
 }
 
 
-
 .sd-form input,
-/* .sd-form select, */
 .sd-form button {
 	border: none;
 	font-family: inherit;
@@ -259,7 +242,6 @@ label {
     color: white;
     float: right;
     padding: 0.85em 1em;
-    /* transition: background-color 0.25s ease-out, color 0.25s ease-out; */
     font-size: 0.9rem;
     line-height: 1;
 
@@ -268,11 +250,6 @@ label {
 .sd-form input.button:hover {
     background-color: #258dad;
 }
-
-  /* input[type=range].sd:focus {
-    outline: none;
-    opacity: 1;
-  } */
 
 
   input[type=range].sd::-webkit-slider-runnable-track {
@@ -387,14 +364,13 @@ label {
 select:focus {
     outline: none;
     background-color: #fdf6ee;
-    /* border: 1px solid #8a8a8a; */
-
-    /* -webkit-box-shadow: 0 0 5px #cacaca; */
-            /* box-shadow: 0 0 5px #cacaca; */
+    border: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     /* -webkit-transition: border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s; */
     /* transition: border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s; */
     /* transition: box-shadow 0.5s, border-color 0.25s ease-in-out; */
-    /* transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;  */
+    /* transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s; */
 }
 select:disabled {
     background-color: #e6e6e6;
@@ -408,5 +384,3 @@ select[multiple] {
 select option {
     background: #fefaf6;
 }
-
-
