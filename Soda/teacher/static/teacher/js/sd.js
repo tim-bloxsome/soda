@@ -1,9 +1,6 @@
 $('form[class=sd-form]').on('submit', function(e) {
   e.preventDefault();
-  // this_form = $(this).find('#snackbar')
   submit_button = $(this).find("input[type=submit]");
-  console.log($(this).attr("action"))
-  console.log($(this).find('#campus').val())
 
   $.ajax({
     type: 'POST',
@@ -35,8 +32,6 @@ $('form[class=sd-form]').on('submit', function(e) {
 
     $(submit_button).prop("disabled", true);
 
-    // Use the variable created above to use $(this) outside scope
-    // $(this_form).addClass("show");
     }
   });
 });

@@ -36,7 +36,6 @@ function calculateTotal() {
 /* Ajax for exam scores*/
 $('form[name=scores]').on('submit', function(e) {
   e.preventDefault();
-  // this_form = $(this).find('#snackbar')
   submit_button = $(this).find("input[type=submit]");
   console.log($(this).attr("action"))
   $.ajax({

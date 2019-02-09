@@ -5,7 +5,6 @@ $(document).foundation()
 $(function(){
   
     $('.nav-link').each(function(){
-      // console.log(window.location.href)
         if ($(this).prop('href') == window.location.href) {
             $(this).addClass('active'); $(this).parents('li').addClass('active');
         } else if ($(this).prop('id').includes("exams") && window.location.href.includes("exams")) {
