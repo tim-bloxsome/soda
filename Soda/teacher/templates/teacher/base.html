@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:700,700i|Roboto:400" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/foundation.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/app.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/grid.css' %}" />
+
+    {% block head %}
+    {% endblock head %}
+
+</head>
+<body>
+<article>
+<header>
+<div class="no-js title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+  <div class="title-bar-title">SODA</div>
+</div>
+
+<div class="no-js top-bar" id="example-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown vertical medium-horizontal menu" 
+        data-responsive-menu="drilldown medium-dropdown"
+        data-auto-height="true" data-animate-height="true">
+            <li class="menu-text hide-for-small-only">SODA</li>
+            {% if user.is_authenticated %}
+            <li><a class='nav-link' id="student" href="#">Students</a>
+                <ul class="menu vertical">
+                    {% for student in students %}
+                    <li><a href="{% url 'student-detail' user.username student.pk %}">{{ student.first_name }} {{ student.last_name }}</a></li>
+                    {% empty %}
+                    <li><a href="#">No students yet.</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a class='nav-link' id="exams" href="#">Exam scores</a>
+                <ul class="menu vertical">
+                    {% for exam in exam_list %}
+                    <li><a href="{% url 'exam-scores' user.username exam.exam_name %}">{{ exam.exam_name }}</a></li>
+                    {% empty %}
+                    <li><a href="#">No exams yet.</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a class='nav-link' href="{% url 'reports' user.username %}">Reports</a></li>
+            <li><a class='nav-link' href="{% url 'teacher-home' user.username %}">Teacher</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="dropdown vertical medium-horizontal menu">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout {{ user.first_name }}</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</header>
+<main>
+{% block content %}
+          
+{% endblock content %} 
+</main>
+
+<footer class="footer"> 
+© Soda {% now "Y" %}
+</footer>
+</article>
+    <script src="{% static 'teacher/js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'teacher/js/vendor/foundation.js' %}"></script>
+    <script src="{% static 'teacher/js/vendor/what-input.js' %}"></script>
+    <script src="{% static 'teacher/js/app.js' %}"></script>
+
+{% block javascript %}
+
+{% endblock javascript %}
+</body>
+</html>

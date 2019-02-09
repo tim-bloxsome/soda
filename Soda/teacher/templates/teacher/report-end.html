@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <title>{{ student.first_name }} {{ student.last_name }} Midcourse Report</title>
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/pdf.css' %}" /> {% endcomment %}
+    <style type="text/css">
+    @page {
+        size: a4 portrait;
+        @frame content_frame {
+            left: 40pt;
+            width: 512pt;
+            top: 25pt;
+            height: 800pt;
+        }
+    }
+
+    /* Normal */
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('teacher/static/teacher/fonts/Montserrat-Regular.ttf');
+    }
+
+    /* Normal */
+    @font-face {
+        font-family: 'Roboto';
+        src: url('teacher/static/teacher/fonts/Roboto-Regular.ttf');
+    }
+
+    /* Bold */
+    @font-face {
+        font-family: 'Roboto';
+        src: url('teacher/static/teacher/fonts/Roboto-Bold.ttf');
+        font-weight: bold;
+    }
+
+
+    .pdf-lexis {
+        font-family: 'Roboto';
+        font-size: 12px;
+        text-align: center;
+        color: black;
+        padding: 1rem;
+        padding: 5px 0 0 5px;
+    }
+
+    .pdf-sub {
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: #7a7a7a;
+        padding: 1rem; 
+        padding: 5px 0 0 5px;
+    }
+
+    .pdf-span {
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: #7a7a7a;
+        text-align: center;
+    }
+
+    .pdf-span-black {
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        padding: 5px 0 0 3px;
+        text-align: center;
+    }
+
+    .pdf-name { 
+        font-family: 'Montserrat';
+        font-size: 28px;
+        color: black;
+        padding: 5px 0 0 0;
+    }
+
+    .pdf-info { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        text-align: left;
+        padding: 5px 0 0 0;
+    }
+    
+    .pdf-plain { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        text-align: left;
+    }
+
+    .pdf-img {
+        text-align: left;
+        padding: 5px 0 0 10px;
+    }
+
+    .pdf-cat { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        text-align: right;
+        color: black;
+        padding: 5px 0 0 5px;
+    }
+
+    td.pdf-com { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        padding: 0 0 0 5px;
+        vertical-align:top;
+        text-align: right;
+    }
+
+    .pdf-sig {
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 0 0 0 12px;
+    }
+
+    .pdf-grade {
+        font-family: 'Roboto';
+        font-size: 24px;
+        color: black;
+        padding: 10px 0 0 0;
+        text-align:center;
+    }
+
+    .pdf-description { 
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 5px 0 0 0;
+        text-align:center;
+    }
+
+    .pdf-key { 
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 5px 0 0 5px;
+    }
+
+    table.main {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #dcdcdc;
+    }
+
+    .box {
+        font-family: 'Roboto';
+        font-size: 12px;
+        padding: 5px 0 0 0;
+        text-align:center;
+    }
+
+    .dot {
+        font-size: 20px;
+        line-height: 1.1;
+        padding: 5px 0 0 0;
+        text-align: center;
+    }
+
+    td.pdf-sig {
+        vertical-align:top;
+        text-align:center;
+    }
+
+
+
+    </style>
+</head>
+<body>
+<table class="">
+  <tr>
+    <td colspan="12" class="pdf-lexis">Lexis English: Endcourse Assessment</td>
+  </tr>
+  <tr>
+    <th colspan="12" class="pdf-name">{{ student.first_name }} {{ student.last_name }}</th>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="12" class="pdf-span-black">
+      {{ student.course.course_long_name }}&nbsp &nbsp &nbsp
+      Teacher:&nbsp{{ student.teacher }}&nbsp &nbsp &nbsp
+      {% now "j F Y" %}
+    </td>
+  </tr>
+
+</table>
+
+  <hr>
+  <table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="3"></td>
+    <td colspan="3" class="pdf-description">Precourse results (%)</td>
+    <td colspan="3" class="pdf-description">Midcourse results (%)</td>
+    <td colspan="3" class="pdf-description">Endcourse results (%)</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Use of English:</td>
+    <td colspan="3" class="box">{{ pre_uofe_perc }}</td>
+    <td colspan="3" class="box">{{ mid_uofe_perc }}</td>
+    <td colspan="3" class="box">{{ end_uofe_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Reading:</td>
+    <td colspan="3" class="box">{{ pre_reading_perc }}</td>
+    <td colspan="3" class="box">{{ mid_reading_perc }}</td>
+    <td colspan="3" class="box">{{ end_reading_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Listening:</td>
+    <td colspan="3" class="box">{{ pre_listening_perc }}</td>
+    <td colspan="3" class="box">{{ mid_listening_perc }}</td>
+    <td colspan="3" class="box">{{ end_listening_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Speaking:</td>
+    <td colspan="3" class="box">{{ pre_speaking_perc }}</td>
+    <td colspan="3" class="box">{{ mid_speaking_perc }}</td>
+    <td colspan="3" class="box">{{ end_speaking_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Writing:</td>
+    <td colspan="3" class="box">{{ pre_writing_perc }}</td>
+    <td colspan="3" class="box">{{ mid_writing_perc }}</td>
+    <td colspan="3" class="box">{{ end_writing_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat" style="font-weight:bold;">Total:</td>
+    <td colspan="3" class="box" style="font-weight:bold;">{{ pre_total_perc }}</td>
+    <td colspan="3" class="box" style="font-weight:bold;">{{ mid_total_perc }}</td>
+    <td colspan="3" class="box" style="font-weight:bold;">{{ end_total_perc }}</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Homework & Self-study:</td>
+    <td colspan="9" class="pdf-img">
+    <img src="teacher/static/teacher/images/progress2.jpg" 
+         height="8" 
+         width="{% widthratio student.homework 2 9 %}" />&nbsp{{ student.homework }}%</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Attendance & Punctuality:</td>
+    <td colspan="9" class="pdf-img">
+    <img src="teacher/static/teacher/images/progress2.jpg" 
+         height="8" 
+         width="{% widthratio student.attendance 2 9 %}" />&nbsp{{ student.attendance }}%</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Attitude & Participation:</td>
+    <td colspan="9" class="pdf-img">
+    <img src="teacher/static/teacher/images/progress2.jpg" 
+         height="8" 
+         width="{% widthratio student.attitude 2 9 %}" />&nbsp{{ student.attitude }}%</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-cat">Lexis achievement grade:</td>
+    <td colspan="3" class="pdf-grade">{{ grade }}</td>
+    <td class="pdf-description">A: 80-100</td>
+    <td class="pdf-description">B: 70-79</td>
+    <td class="pdf-description">C: 50-69</td>
+    <td class="pdf-description">D: 40-49</td>
+    <td class="pdf-description">E: 16-39</td>
+    <td class="pdf-description">F: 1-15</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="pdf-com">Comments:</td>
+    <td colspan="1"></td>
+    <td colspan="9" class="pdf-plain">{{ student.comments|linebreaks }}</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="pdf-cat">Previous course(s):</td>
+    <td colspan="1"></td>
+    <td colspan="9" class="pdf-info">{{ student.previous|linebreaks }}</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="pdf-cat">Signatures: </td>
+    <td colspan="4" class="pdf-sig"></td>
+    <td colspan="4" class="pdf-sig"></td>
+    <td colspan="2" class="pdf-sig"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="pdf-cat"></td>
+    <td colspan="5" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="5" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+  </tr>
+    <tr>
+    <td colspan="2" class="pdf-cat"></td>
+    <td colspan="5" class="pdf-sig">{{ student.first_name }} {{ student.last_name }}</td>
+    <td colspan="5" class="pdf-sig">{{ student.teacher }}</td>
+  </tr>
+  <tr>
+    <td colspan="12"></td>
+  </tr>
+</table>
+<hr>
+</body>
+</html>

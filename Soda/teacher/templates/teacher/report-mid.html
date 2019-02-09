@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <title>{{ student.first_name }} {{ student.last_name }} Midcourse Report</title>
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/pdf.css' %}" /> {% endcomment %}
+    <style type="text/css">
+    @page {
+        size: a4 portrait;
+        @frame content_frame {
+            left: 40pt;
+            width: 512pt;
+            top: 25pt;
+            height: 800pt;
+{% comment %} -pdf-frame-border: 1;    /* for debugging the layout */ {% endcomment %}
+        }
+    }
+
+    /* Normal */
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('teacher/static/teacher/fonts/Montserrat-Regular.ttf');
+    }
+
+    /* Normal */
+    @font-face {
+        font-family: 'Roboto';
+        src: url('teacher/static/teacher/fonts/Roboto-Regular.ttf');
+    }
+
+    /* Normal */
+    @font-face {
+        font-family: 'Able';
+        src: url('teacher/static/teacher/fonts/Abel-Regular.ttf');
+    }
+
+    .pdf-lexis {
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        padding: 1rem;
+        padding: 5px 0 0 5px;
+    }
+
+    .pdf-sub {
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: #7a7a7a;
+        padding: 1rem; 
+        padding: 5px 0 0 5px;
+    }
+
+    .pdf-span {
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: #7a7a7a;
+        text-align: center;
+    }
+
+    .pdf-span-black {
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 5px 0 0 0;
+        text-align: center;
+    }
+
+    .pdf-name { 
+        font-family: Montserrat;
+        font-size: 24px;
+        color: black;
+        padding: 5px 0 0 0;
+    }
+
+    .pdf-info { 
+        font-family: Roboto;
+        font-size: 12px;
+        color: black;
+        text-align: center;
+        padding: 5px 0 0 0;
+    }
+
+    .pdf-cat { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        padding: 5px 0 0 5px;
+    }
+
+    td.pdf-com { 
+        font-family: 'Roboto';
+        font-size: 12px;
+        color: black;
+        padding: 0 0 0 5px;
+        vertical-align:top;
+    }
+
+    .pdf-sig {
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 0 0 0 12px;
+    }
+
+    .pdf-description { 
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 5px 0 0 0;
+        text-align:center;
+    }
+
+    .pdf-key { 
+        font-family: 'Roboto';
+        font-size: 10px;
+        color: black;
+        padding: 5px 0 0 5px;
+    }
+
+    table.main {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #dcdcdc;
+    }
+
+    .box {
+        font-family: 'Roboto';
+        font-size: 12px;
+        border: 1px solid #dcdcdc;
+        padding: 5px 0 0 0;
+        text-align:center;
+    }
+
+    .dot {
+        font-size: 20px;
+        line-height: 1.1;
+        padding: 5px 0 0 0;
+        text-align: center;
+    }
+
+    td.pdf-sig {
+        vertical-align:top;
+        text-align:center;
+    }
+
+    </style>
+</head>
+<body>
+<table>
+  <tr >
+    <th colspan="7" class="pdf-lexis">Lexis English: {{ student.course }} Midcourse Assessment - {% now "j F Y" %}</th>
+  </tr>
+  <tr>
+    <th colspan="7" class="pdf-name">{{ student.first_name }} {{ student.last_name }}</th>
+  <tr>
+    <td colspan="7"></td>
+  </tr>
+  </table> 
+  <table class="main">
+  <tr>
+    <td></td>
+    <td colspan="3" class="pdf-cat">Key learning areas</td>
+    <td class="pdf-description">Achieving below the expected level</td>
+    <td class="pdf-description">Achieving at the expected level</td>
+    <td class="pdf-description">Achieving above the expected level</td>
+  </tr>
+  <tr>
+    <td rowspan="2" class="pdf-cat">Grammar</td>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Demonstrates an understanding of the grammar concepts</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if uofe_perc  < 55 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if uofe_perc  >= 55 and uofe_perc < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if uofe_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Ability to use grammar learnt in all learning  areas</td>
+    <td class="dot">{% if uofe_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if uofe_perc  >= 60 and uofe_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if uofe_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="pdf-cat">Speaking</td>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Self corrects</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+    <td class="dot" style="background-color:#f0f0f0;">•</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Uses language that is appropriate to the level</td>
+    <td class="dot">{% if speaking_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if speaking_perc  >= 60 and speaking_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if speaking_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Participates in class discussions</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if speaking_perc  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if speaking_perc  >= 60 and speaking_perc < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if speaking_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Finds opportunities to speak in English outside class</td>
+    <td class="dot"></td>
+    <td class="dot">•</td>
+    <td class="dot"></td>
+  </tr>
+  <tr>
+    <td class="pdf-cat">Pronunciation</td>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Clarity and Accuracy</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+    <td class="dot" style="background-color:#f0f0f0;">•</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+  </tr>
+  <tr>
+    <td rowspan="2" class="pdf-cat">Listening</td>
+    <td colspan="3" class="pdf-key">Accuracy in transcription and note taking</td>
+    <td class="dot">{% if listening_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if listening_perc  >= 60 and listening_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if listening_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Comprehension with interlocutors</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if listening_perc  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if listening_perc  >= 60 and listening_perc < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if listening_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td rowspan="3" class="pdf-cat">Reading</td>
+    <td colspan="3" class="pdf-key">Demonstrates an understanding of selected texts</td>
+    <td class="dot">{% if reading_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if reading_perc  >= 60 and reading_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if reading_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Can interpret meaning from context</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if reading_perc  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if reading_perc  >= 60 and reading_perc < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if reading_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Uses text knowledge selectively to respond</td>
+    <td class="dot">{% if reading_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if reading_perc  >= 60 and reading_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if reading_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td rowspan="3" class="pdf-cat">Writing</td>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Completes written tasks</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+    <td class="dot" style="background-color:#f0f0f0;">•</td>
+    <td class="dot" style="background-color:#f0f0f0;"></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Sentence structure and vocabulary is accurate</td>
+    <td class="dot">{% if writing_perc  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if writing_perc  >= 60 and writing_perc < 80%} • {% endif %}</td>
+    <td class="dot">{% if writing_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Development is coherent, effective and on task</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if writing_perc  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if writing_perc  >= 60 and writing_perc < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if writing_perc  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="pdf-cat">Application</td>
+    <td colspan="3"></td>
+    <td class="pdf-span-black">Effort Required</td>
+    <td class="pdf-span-black">Satisfactory</td>
+    <td class="pdf-span-black">Good</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Homework and Self Study</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.homework  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.homework  >= 60 and student.homework < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.homework  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="pdf-key">Attendance and Punctuality</td>
+    <td class="dot">{% if student.attendance  < 60 %} • {% endif %}</td>
+    <td class="dot">{% if student.attendance  >= 60 and student.attendance < 80%} • {% endif %}</td>
+    <td class="dot">{% if student.attendance  > 79 %} • {% endif %}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="background-color:#f0f0f0;" class="pdf-key">Attitude & Participation</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.attitude  < 60 %} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.attitude  >= 60 and student.attitude < 80%} • {% endif %}</td>
+    <td class="dot" style="background-color:#f0f0f0;">{% if student.attitude  > 79 %} • {% endif %}</td>
+  </tr>
+  </table>
+  <table>
+  <tr>
+    <td colspan="7"></td>
+  </tr>
+  <tr>
+    <td class="pdf-cat"></td>
+    <td class="pdf-description">Use of English</td>
+    <td class="pdf-description">Reading</td>
+    <td class="pdf-description">Listening</td>
+    <td class="pdf-description">Speaking</td>
+    <td class="pdf-description">Writing</td>
+    <td class="pdf-description">Total</td>
+  </tr>
+  <tr>
+    <td class="pdf-cat">Midcourse:</td>
+    <td class="box">{{ uofe_perc }}%</td>
+    <td class="box">{{ reading_perc }}%</td>
+    <td class="box">{{ listening_perc }}%</td>
+    <td class="box">{{ speaking_perc }}%</td>
+    <td class="box">{{ writing_perc }}%</td>
+    <td class="box">{{ total_perc }}%</td>
+  </tr>
+  <tr>
+    <td colspan="7"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td colspan="6"></td>
+  </tr>
+  <tr>
+    <td class="pdf-com">Comments:</td>
+    <td colspan="6">
+    {{ uofe_comment }}
+     {{ reading_comment }}
+     {{ listening_comment }}
+     {{ speaking_comment }}
+     {{ writing_comment }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7"></td>
+  </tr>
+  <tr>
+    <td colspan="1" class="pdf-cat">Signatures: </td>
+    <td colspan="2" class="pdf-sig"></td>
+    <td colspan="2" class="pdf-sig"></td>
+    <td colspan="2" class="pdf-sig"></td>
+  </tr>
+  <tr>
+    <td colspan="1" class="pdf-cat"></td>
+    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="2"  class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+  </tr>
+    <tr>
+    <td colspan="1" class="pdf-cat"></td>
+    <td colspan="2" class="pdf-sig">{{ student.first_name }} {{ student.last_name }}</td>
+    <td colspan="2" class="pdf-sig">{{ student.teacher }}</td>
+    <td colspan="2" class="pdf-sig">Academic Manager</td>
+  </tr>
+</table>
+</body>
+</html>

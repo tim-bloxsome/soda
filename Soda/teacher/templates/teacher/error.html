@@ -1,0 +1,30 @@
+{% extends 'teacher/base.html' %}
+{% load static %}
+{% block head %}
+<style>
+.container {
+    position: relative;
+    text-align: center;
+
+}
+
+.centered {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>
+{% endblock head %}
+{% block content %}
+
+<div class="container">
+
+<img src="{% static 'images/Error_penguin.svg' %}" alt="Error penguin" width="80%">
+<div class="centered">
+<h1 style="font-size:8vw">ERROR</h1>
+
+</div>
+<h1 style="font-size:6vw">You must play with this pengiun</h1>
+</div>
+{% endblock content %}

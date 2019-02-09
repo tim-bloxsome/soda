@@ -1,0 +1,105 @@
+{% extends "teacher/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+Student Details
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'teacher/css/student.css' %}" />
+{% endblock head %}
+
+
+{% block content %}
+
+<div class="center title">
+
+        <div class="sd-title">
+            {{ student.first_name }} <br> 
+            {{ student.last_name }} 
+        </div>
+</div>
+<div class="center">
+
+  <form class="sd-form"
+        action="{% url 'student-detail' user.username student.id %}">
+        {% csrf_token %}
+        <input type="hidden" id="student-id" value="{{ student.id }}">
+        <input type="hidden" id="stu_num" value="{{ student.stu_num }}">
+        <input type="hidden" id="last_name" value="{{ student.last_name }}">
+        <input type="hidden" id="first_name" value="{{ student.first_name }}">
+        <input type="hidden" id="country" value="{{ student.country }}">
+
+
+        {% comment %} <span>{{ student.get_country_display }}</span> <br> <br> {% endcomment %}
+          
+        <div id="sd-top">    
+            <div class="sd-input">
+            <label for="campus">Campus:</label>
+            <input  
+                id ="campus"
+                type="text" 
+                value="{{ student.campus }}"
+                placeholder="Campus">
+            </div>
+
+            <div class="sd-input">
+            <label for="course">Course:</label>
+            <input data-tooltip data-click-open="false" tabindex="1" data-position="bottom" data-alignment="left"
+                title="Entering a new teacher and course will transfer this student to that teacher's list."
+                id ="course"
+                type="text"
+                value="{{ student.course }}" 
+                placeholder="Course">
+            </div>
+
+            <div class="sd-input">
+            <label for="teacher">Teacher:</label>
+            <input  data-tooltip data-click-open="false" tabindex="1" data-position="bottom" data-alignment="left"
+            Bottom Left
+                    title="Entering a new teacher and course will transfer this student to that teacher's list."
+                    id ="teacher"
+                    type="text"
+                    value="{{ student.teacher }}" 
+                    placeholder="Teacher">
+            </div>
+        </div>
+
+        <br>
+        <div class="sd-content">
+            <label >Homework & Self-study</label> 
+            <input type="range" class="sd" id="homework" value="{{ student.homework }}" min="0" max="100" step="1">
+
+            <label>Attendance & Punctuality</label>
+            <input type="range" class="sd" id="attendance" value="{{ student.attendance }}" min="0" max="100" step="1">
+        
+            <label>Attitude & Participation</label>
+            <input type="range" class="sd" id="attitude" value="{{ student.attitude }}" min="0" max="100" step="1">
+        </div>
+            <hr>
+        <div class="sd-content">
+                <label>Comments</label>
+                <textarea rows="4" cols="10" id="comments" placeholder="Enter personal comments about this student for use in the endcourse report.">{{ student.comments }}</textarea>
+        </div>
+            <hr>
+        <div class="sd-content">
+                <label>Previous course(s)</label>
+                <textarea rows="2" cols="10" id="previous" placeholder="Enter the courses this student has previously completed at Lexis, if any.">{{ student.previous }}</textarea>
+
+            <input 
+                id="submit"
+                type="submit" 
+                class="button" 
+                value="Save" 
+                disabled/>
+        </div>
+  </form>
+</div>
+<div id="snackbar">Student saved</div>
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'teacher/js/sd.js' %}"></script>
+{% endblock javascript %}
+

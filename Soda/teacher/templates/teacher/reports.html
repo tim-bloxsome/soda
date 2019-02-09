@@ -1,0 +1,54 @@
+{% extends "teacher/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+
+{% block title %}
+Reports
+{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/reports.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<div class="center title">
+
+        <div class="r-title">
+Reports
+        </div>
+</div>
+<div class="r-center">
+    <div class="r-form">
+            <div class="r-grid-top">
+                            <div class="r-name">
+                            </div>
+                            <div class="r-mid">
+                                midcourse
+                            </div>
+                            <div class="r-end">
+                                endcourse
+                            </div>
+                        </div>
+                {% for student in students %}
+                        <div class="r-grid">
+                            <div class="r-name">
+                                <span id="stu-firstname">{{ student.first_name }} </span> <span id="stu-lastname">{{ student.last_name }}</span>
+                            </div>
+                            <div class="r-mid">
+                                <a href="{% url 'report-mid' student.pk %}" target="_blank">Print</a>
+                            </div>
+                            <div class="r-end">
+                                <a href="{% url 'report-end' student.pk %}" target="_blank">Print</a>
+                            </div>
+                        </div>
+
+                        {% empty %}
+                        <div class="r-center">
+                            <div class="r-title"> No students yet.</div>
+                        </div>
+                {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

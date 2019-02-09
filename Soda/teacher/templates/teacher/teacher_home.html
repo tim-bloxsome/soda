@@ -1,0 +1,36 @@
+{% extends "teacher/base.html" %}
+{% load static %}
+
+{% block title %}
+Teacher home
+{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'teacher/css/reports.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<div class="center title">
+
+        <div class="r-title">
+            Hello {{ user.first_name }}
+        </div>
+</div>
+<div class="r-center">
+
+        <div class="h-content">
+        Today is {% now "j F Y" %}  <br><br>
+        You are teaching {{ teacher.course }}. <br><br>
+        There are {{ student_count }} {{ teacher.course }} students on the {{ teacher.campus }} campus. <br><br>
+        Awesome.
+        </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
