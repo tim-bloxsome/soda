@@ -32,7 +32,8 @@
                        step="0.01" 
                        class="score" 
                        id="score-re"
-                       value="{% unique_exam student.id exam_name 'reading' %}" 
+                       {% unique_exam student.id exam_name 'reading' as reading %}
+                       value="{{ reading|floatformat:"-2" }}" 
                        placeholder="36">
                        <div id="percentage"></div>
                 {% comment %} <input type="text" id="percentage" placeholder="0%" disabled/> {% endcomment %}
@@ -42,7 +43,8 @@
                        step="0.01" 
                        class="score" 
                        id="score-us" 
-                       value="{% unique_exam student.id exam_name 'uofe' %}"
+                       {% unique_exam student.id exam_name 'uofe' as uofe %}
+                       value="{{ uofe|floatformat:"-2" }}"
                        placeholder="36">
                 <div id="percentage"></div>
             </div>
@@ -51,7 +53,8 @@
                        step="0.01" 
                        class="score" 
                        id="score-wr" 
-                       value="{% unique_exam student.id exam_name 'writing' %}"
+                       {% unique_exam student.id exam_name 'writing' as writing %}
+                       value="{{ writing|floatformat:"-2" }}"
                        placeholder="5">
                 <div id="percentage"></div>
             </div>
@@ -60,7 +63,8 @@
                        step="0.01" 
                        class="score" 
                        id="score-li" 
-                       value="{% unique_exam student.id exam_name 'listening' %}"
+                       {% unique_exam student.id exam_name 'listening' as listening %}
+                       value="{{ listening|floatformat:"-2" }}"
                        placeholder="30">
                 <div id="percentage"></div>
             </div>   
@@ -69,7 +73,8 @@
                        step="0.01" 
                        class="score" 
                        id="score-sp" 
-                       value="{% unique_exam student.id exam_name 'speaking' %}"
+                       {% unique_exam student.id exam_name 'speaking' as speaking %}
+                       value="{{ speaking|floatformat:"-2" }}"
                        placeholder="5">
                 <div id="percentage"></div>
             </div>
