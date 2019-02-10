@@ -81,10 +81,11 @@ header, main, footer {
   text-align: left;
   color: #7a7a7a;
   line-height: 1;
-  margin: 2rem;
+  margin: 0 2rem 2rem 2rem;
   align-self: center;}
   @media print, screen and (min-width: 40em) {
     .mega-title {
+      margin: 2rem;
       font-size: 6rem; } }
 
 
@@ -258,8 +259,9 @@ header, main, footer {
 }
 
 .form-control {
-  font-family: 'Font Awesome 5 Free', 'Roboto', sans-serif;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: #7a7a7a;
+  letter-spacing: 1px;
   height: 4rem;
   background: #fff6ea
 }
