@@ -14,7 +14,6 @@
             width: 512pt;
             top: 25pt;
             height: 800pt;
-{% comment %} -pdf-frame-border: 1;    /* for debugging the layout */ {% endcomment %}
         }
     }
 
@@ -39,6 +38,7 @@
     .pdf-lexis {
         font-family: 'Roboto';
         font-size: 12px;
+        text-align: center;
         color: black;
         padding: 1rem;
         padding: 5px 0 0 5px;
@@ -150,7 +150,7 @@
 <body>
 <table>
   <tr >
-    <th colspan="7" class="pdf-lexis">Lexis English: {{ student.course }} Midcourse Assessment - {% now "j F Y" %}</th>
+    <td colspan="7" class="pdf-lexis">Lexis English: {{ student.course }} Midcourse Assessment - {% now "j F Y" %}</td>
   </tr>
   <tr>
     <th colspan="7" class="pdf-name">{{ student.first_name }} {{ student.last_name }}</th>
@@ -338,9 +338,9 @@
   </tr>
   <tr>
     <td colspan="1" class="pdf-cat"></td>
-    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
-    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
-    <td colspan="2"  class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="2" class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
+    <td colspan="2"  class="pdf-sig">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td>
   </tr>
     <tr>
     <td colspan="1" class="pdf-cat"></td>
