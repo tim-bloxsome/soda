@@ -125,6 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/home/timnoosa/soda/static'
+
 LOGIN_REDIRECT_URL = 'teacher-home'
 
 LOGIN_URL = 'login'
