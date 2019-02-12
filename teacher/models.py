@@ -9,6 +9,7 @@ class Campus(models.Model):
 
     class Meta:
         verbose_name_plural = "campuses"
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.campus_name}'
@@ -20,6 +21,7 @@ class Course(models.Model):
 
     class Meta:
         verbose_name_plural = "courses"
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.course_name}'
@@ -52,7 +54,7 @@ class Teacher(models.Model):
         instance.teacher.save()
 
     class Meta:
-        ordering = ['user']
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
