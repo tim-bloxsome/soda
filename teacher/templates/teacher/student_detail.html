@@ -101,7 +101,11 @@ Student Details
         <div class="sd-content">
                 <label>Previous courses (separate with commas):</label>
                 <textarea rows="2" cols="10" id="previous" placeholder="Enter Lexis courses previously completed. If none, enter 'None'.">{{ student.previous }}</textarea>
-
+        </div> 
+            <hr style="margin: 0 0 0 0">
+        <div id="saved">Saved</div>
+        
+        <div class="sd-content">
             <input 
                 id="submit"
                 type="submit" 
@@ -111,7 +115,7 @@ Student Details
         </div>
   </form>
 </div>
-<div id="snackbar">Student saved</div>
+
 {% endblock content %}
 
 {% block javascript %}

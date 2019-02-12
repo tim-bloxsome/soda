@@ -54,7 +54,7 @@ header, main, footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0 2rem 0;}
+  padding: 0 0 0rem 0;}
   @media print, screen and (min-width: 40em) {
     .center {
       flex-direction: column; } 
@@ -96,7 +96,7 @@ header, main, footer {
   text-align: left;
   color: #7a7a7a;
   line-height: 1;
-  margin: 2rem;
+  margin: 2rem 2rem 1rem 2rem;
 }
   @media print, screen and (min-width: 40em) {
     .scores-title {
@@ -377,7 +377,7 @@ p.form-card-small {
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
-  visibility: visible; /* Show the snackbar */
+  visibility: visible; 
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -385,7 +385,7 @@ p.form-card-small {
 }
 
 /* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
+/* @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;}
   to {bottom: 50px; opacity: 1;}
 }
@@ -403,7 +403,7 @@ p.form-card-small {
 @keyframes fadeout {
   from {bottom: 50px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
-} 
+}  */
 
 /* Previously from grid.css */
 #name { 
@@ -472,12 +472,54 @@ p.form-card-small {
 
 #speaking { 
   grid-area: s; 
-  padding: 0.5em;
+  padding: 0.1em;
 }
+
+#saved {
+  grid-area: a; 
+  visibility: hidden;
+  color: white;
+  background: #2ba6cb;
+  padding: 0.1rem;
+  text-align: center;
+  line-height: 1;
+  font-size: 0.9em;
+}
+
+#saved.show {
+  visibility: visible; /* Show saved */
+  /* Add animation: Take 0.5 seconds to fade in and out saved.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the saved in and out */
+@-webkit-keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {opacity: 1;}
+  to {opacity: 0;}
+} 
+
 
 #grid {
   display: grid;
   grid-template-areas:
+      "a a a a a"
       "n n n n v"
       "r u w l s";
   

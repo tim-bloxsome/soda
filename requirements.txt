@@ -1,6 +1,7 @@
 Django==2.1.5
 httpie==1.0.2
 xhtml2pdf==0.2.3
+django-import-export==1.2.0
 
 # Successfully installed Pillow-5.4.1 html5lib-1.0.1 pyPdf2-1.26.0 reportlab-3.5.13 webencodings-0.5.1 xhtml2pdf-0.2.3
 # pylint==2.1.2

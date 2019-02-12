@@ -18,7 +18,9 @@
         <input type="hidden" id="student-id" value="{{ student.id }}">
         <input type="hidden" id="exam_name" value="{{ exam_name }}">
 
+
         <div id="grid">
+            <div id="saved">Saved</div>
             <div id="name"><span id="namo">{{ student.first_name }} {{ student.last_name }}</span>
                 <span id="exam-total"></span></div>
             <div id="save">     
@@ -85,7 +87,6 @@
       <div class="scores-title">No students yet.</div>
     </div>
     {% endfor %}
-    <div id="snackbar">Scores saved</div>
 {% endblock content %}
 
 {% block javascript %}

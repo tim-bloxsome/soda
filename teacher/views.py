@@ -14,19 +14,37 @@ from django.conf import settings
 from django.views.generic import DetailView
 
 from xhtml2pdf import pisa
+from tablib import Dataset
+from import_export import resources
+
 
 from teacher.forms import StudentForm, CustomAuthForm, ExamScoreForm
 from teacher.models import Student, ExamType, ExamScore, Teacher, Campus
 import teacher.descriptors as des
+from teacher.admin import StudentResource
 
 
 """
-TODO page transitions
-TODO just customise the User to add first name and last name
-     and checkbox for teacher at creation
+
 TODO Need a link to change forgotten passwords
-TODO Help text teacher's course must match the student's course
+TODO CSV reader
+TODO change model to correct decimal inputs
+
 """
+
+
+def csv_upload(request):
+    if request.method == 'POST':
+        student_resource = StudentResource()
+        # dataset = Dataset()
+        new_students = request.FILES['myfile']
+        dataset = Dataset().load(new_students.read())
+        result = student_resource.import_data(dataset, dry_run=True)  # Test the data import
+
+        if not result.has_errors():
+            student_resource.import_data(dataset, dry_run=False)  # Actually import now
+
+    return render(request, 'teacher/csv_upload.html')
 
 
 @login_required
@@ -501,3 +519,5 @@ def render_endpdf_view(request, pk):
 #     template_name = 'teacher/report-mid.html'
 #     model = Student
 #     context_object_name = 'student'
+
+

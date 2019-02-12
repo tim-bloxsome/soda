@@ -36,6 +36,7 @@ function calculateTotal() {
 /* Ajax for exam scores*/
 $('form[name=scores]').on('submit', function(e) {
   e.preventDefault();
+  saved = $(this).find('#saved')
   submit_button = $(this).find("input[type=submit]");
   console.log($(this).attr("action"))
   $.ajax({
@@ -54,9 +55,14 @@ $('form[name=scores]').on('submit', function(e) {
     success: function () {
 
       // Snackbar
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      // var x = document.getElementById("snackbar");
+      // x.className = "show";
+      // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+      // var x = document.getElementById("saved");
+      saved.addClass("show");
+      setTimeout(function(){ $('.show').addClass('').removeClass('show'); }, 3000);
+      // setTimeout(function(){ saved.className = saved.className.replace("show", ""); }, 3000);
 
       $(submit_button).prop("disabled", true);
 

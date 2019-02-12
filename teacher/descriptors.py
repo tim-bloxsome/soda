@@ -124,13 +124,13 @@ B1P_W_B = "You can write letters and emails describing my experiences and feelin
 B1P_W_C = "You can write about familiar topics, comparing and contrasting different opinions."
 
 
-B1P_U_A = "You know enough vocabulary to talk about your family, hobbies and interests, work, travel, news and current events."
-B1P_U_B = "You can link a series of short phrases into a connected, sequence of points."
-B1P_U_C = "You can use simple expressions politely in a neutral way in everyday situations."
+B1_U_A = "You know enough vocabulary to talk about your family, hobbies and interests, work, travel, news and current events."
+B1_U_B = "You can link a series of short phrases into a connected, sequence of points."
+B1_U_C = "You can use simple expressions politely in a neutral way in everyday situations."
 
-B1P_R_A = "You can understand the main points in straightforward factual texts on subjects of personal or professional interest well enough to talk about them afterwards."
-B1P_R_B = "You can understand the main points in short newspaper and magazine articles about current and familiar topics."
-B1P_R_C = "You can understand private letters about events, feelings and wishes well enough to write back."
+B1_R_A = "You can understand the main points in straightforward factual texts on subjects of personal or professional interest well enough to talk about them afterwards."
+B1_R_B = "You can understand the main points in short newspaper and magazine articles about current and familiar topics."
+B1_R_C = "You can understand private letters about events, feelings and wishes well enough to write back."
 
 B1_L_A = "You can understand the main points of clear standard speech on familiar, everyday subjects, provided there is an opportunity to get repetition or clarification sometimes."
 B1_L_B = "You can understand what is said to you in everyday conversations, but you sometimes need help in clarifying particular details."
