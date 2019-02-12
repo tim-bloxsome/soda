@@ -59,14 +59,6 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
-    COUNTRIES = (
-        ('ch', 'Switzerland'),
-        ('br', 'Brazil'),
-        ('es', 'Spain'),
-        ('de', 'Germany'),
-        ('fr', 'France'),
-        ('kr', 'South Korea')
-    )
     stu_num = models.IntegerField(verbose_name='student number')
     last_name = models.CharField(max_length=50, verbose_name='last name')
     first_name = models.CharField(max_length=50, verbose_name='first name')
@@ -74,7 +66,7 @@ class Student(models.Model):
     campus = models.ForeignKey(Campus, null=True, on_delete=models.SET_NULL)
     course = models.ForeignKey(Course, null=True, on_delete=models.SET_NULL)
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.SET_NULL)
-    country = models.CharField(max_length=2, choices=COUNTRIES)
+    country = models.CharField(blank=True, null=True, max_length=30)
     # don't forget student.get_country_display()
     homework = models.PositiveSmallIntegerField(default=90)
     attendance = models.PositiveSmallIntegerField(default=70)
@@ -93,12 +85,12 @@ class Student(models.Model):
 
 class ExamScore(models.Model):
     exam_name = models.CharField(max_length=20)
-    reading = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
-    uofe = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2,
-                               verbose_name='use of English')
-    writing = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
-    listening = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
-    speaking = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
+    reading = models.PositiveSmallIntegerField(blank=True, null=True)
+    uofe = models.PositiveSmallIntegerField(blank=True, null=True,
+                                            verbose_name='use of English')
+    writing = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1)
+    listening = models.PositiveSmallIntegerField(blank=True, null=True)
+    speaking = models.DecimalField(blank=True, null=True, max_digits=2, decimal_places=1)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     class Meta:

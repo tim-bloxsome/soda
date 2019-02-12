@@ -26,11 +26,6 @@ $('form[class=sd-form]').on('submit', function(e) {
     },
     success: function () {
 
-    // Snackbar
-    // var x = document.getElementById("snackbar");
-    // x.className = "show";
-    // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-
     saved.addClass("show");
     setTimeout(function(){ $('.show').addClass('').removeClass('show'); }, 3000);
 

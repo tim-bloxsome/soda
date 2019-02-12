@@ -14,6 +14,3 @@ $(function(){
         }
     });
 });
-
-// need this to avoid FOUC - Flash of unstyled content
-// $('ul.hide-on-load').removeClass('hide-on-load');

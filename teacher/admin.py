@@ -5,10 +5,22 @@ from .forms import TeacherForm
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
 
-# admin.site.register(Student)
-admin.site.register(Campus)
+
+admin.site.site_header = "Soda Admin"
+
 admin.site.register(ExamScore)
-admin.site.register(Course)
+
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('course_name', 'id')
+    readonly_fields = ('id',)
+
+
+@admin.register(Campus)
+class CampusAdmin(admin.ModelAdmin):
+    list_display = ('campus_name', 'id')
+    readonly_fields = ('id',)
 
 
 @admin.register(ExamType)
@@ -20,11 +32,10 @@ class ExamTypeAdmin(admin.ModelAdmin):
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
     form = TeacherForm
+    readonly_fields = ('id',)
 
 
 class StudentResource(resources.ModelResource):
-    # stu_num = Field(attribute='stu_num', column_name='Student No')
-    # last_name = Field(attribute='last_name', column_name='Last Name')
 
     class Meta:
         model = Student

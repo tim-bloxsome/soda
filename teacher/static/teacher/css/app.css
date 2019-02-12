@@ -353,58 +353,6 @@ p.form-card-small {
 }
 
 
-/* The snackbar - position it at the bottom and in the middle of the screen */
-#snackbar {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px;
-  margin-left: -125px; /* Divide value of min-width by 2 */
-  background-color: #333; /* Black background color */
-  /* color: #fff; White text color */
-  text-align: center;
-  border-radius: 10px;
-  padding: 16px;
-  position: absolute; /* Sit on top of the screen */
-  z-index: 1; /* Add a z-index if needed */
-  left: 50%; /* Center the snackbar */
-  bottom: 50px; /* 50px from the bottom */
-  font-family: 'Lobster Two', cursive;
-  font-size: 3em;
-  font-style: italic;
-  text-align: left;
-  color: #fff;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-  visibility: visible; 
-  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  However, delay the fade out process for 2.5 seconds */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the snackbar in and out */
-/* @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 50px; opacity: 1;}
-}
-
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 50px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-  from {bottom: 50px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-  from {bottom: 50px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}  */
-
 /* Previously from grid.css */
 #name { 
   grid-area: n;
@@ -472,14 +420,14 @@ p.form-card-small {
 
 #speaking { 
   grid-area: s; 
-  padding: 0.1em;
+  padding: 0.5em;
 }
 
 #saved {
   grid-area: a; 
   visibility: hidden;
   color: white;
-  background: #2ba6cb;
+  background: rgba(56, 179, 190, 0.9);
   padding: 0.1rem;
   text-align: center;
   line-height: 1;

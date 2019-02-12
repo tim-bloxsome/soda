@@ -27,8 +27,10 @@ from teacher.admin import StudentResource
 """
 
 TODO Need a link to change forgotten passwords
-TODO CSV reader
+TODO CSV export for exam scores
 TODO change model to correct decimal inputs
+TODO slider input only on handle
+TODO admin customisations
 
 """
 
