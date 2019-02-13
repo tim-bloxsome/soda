@@ -21,7 +21,6 @@ Student Details
         </div>
 </div>
 <div class="center">
-
   <form class="sd-form"
         action="{% url 'student-detail' user.username student.id %}">
         {% csrf_token %}
@@ -107,6 +106,14 @@ Student Details
         
         <div class="sd-content">
             <input 
+                type="button"
+                id="delete"
+                data-open="DeleteModal" 
+                class="hollow button alert" 
+                value="Delete Student" 
+                style="float:left"/>
+
+            <input 
                 id="submit"
                 type="submit" 
                 class="button" 
@@ -114,6 +121,29 @@ Student Details
                 disabled/>
         </div>
   </form>
+    <div class="reveal" id="DeleteModal" data-reveal>
+        <h1>Delete Student</h1>
+        <p class="lead">
+        {{ student.first_name }} {{ student.last_name }} will be completely removed.</p>
+        <p>WARNING: Only delete a student if they are no longer studying at the school.</p>
+        <p>To transfer a student to another class DO NOT delete, simply click on the teacher 
+        name in the green bar and select the correct teacher.</p> 
+        <br>
+    
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    
+        <form action="{% url 'delete-student' user.username student.pk %}" method="post">
+            {% csrf_token %}
+            <input 
+                type="submit" 
+                id="delete" 
+                class="button alert" 
+                value="Delete student" 
+                style="float:right"/>
+        </form>
+    </div>
 </div>
 
 {% endblock content %}

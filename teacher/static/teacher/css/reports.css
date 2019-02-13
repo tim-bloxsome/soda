@@ -55,22 +55,7 @@
         .r-title {
         font-size: 4rem; 
         width: 760px; } }
-
-.h-content {
-    font-family: 'Roboto';
-    font-size: 1.2rem;
-    text-align: left;
-    color: #7a7a7a;
-    line-height: 1.5;
-    align-self: center;
-    padding: 0 2rem 0 2rem;
-    
-    }
-    @media print, screen and (min-width: 40em) {
-        .h-content {
-        font-size: 1.2rem; 
-        width: 760px;
-        padding: 0 0 0 1rem; } }        
+        
 
 .r-grid-top {
     display: grid;

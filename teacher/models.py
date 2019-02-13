@@ -99,4 +99,4 @@ class ExamScore(models.Model):
         ordering = ['student']
 
     def __str__(self):
-        return f'{self.exam_name} exam for {self.student}'
+        return f'{self.exam_name} - {self.student}'

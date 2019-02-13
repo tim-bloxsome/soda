@@ -12,6 +12,7 @@ from django.template import Context
 from django.template.loader import get_template
 from django.conf import settings
 from django.views.generic import DetailView
+from django.contrib import messages
 
 from xhtml2pdf import pisa
 from tablib import Dataset
@@ -28,17 +29,25 @@ from teacher.admin import StudentResource
 
 TODO Need a link to change forgotten passwords
 TODO CSV export for exam scores
-TODO change model to correct decimal inputs
 TODO slider input only on handle
-TODO admin customisations
+TODO stop admin being added to teachers
 
 """
+
+
+def delete_student(request, username, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == 'POST':
+        student.delete()
+        # one time flash message which will appear on teacher-home upon redirect
+        messages.success(request, f'{student} has been successfully deleted!')
+        return redirect('teacher-home', username=username)
+    return render(request, 'teacher/error.html')
 
 
 def csv_upload(request):
     if request.method == 'POST':
         student_resource = StudentResource()
-        # dataset = Dataset()
         new_students = request.FILES['myfile']
         dataset = Dataset().load(new_students.read())
         result = student_resource.import_data(dataset, dry_run=True)  # Test the data import
@@ -125,10 +134,6 @@ def home(request):
 
 @login_required
 def teacher_home(request, username):
-    # user = request.user.id
-    # if Teacher.objects.filter(user__id=user).exists():
-    #     teacher = Teacher.objects.get(user__id=user)
-    # context = {'teacher': teacher}
     return render(request, 'teacher/teacher_home.html')
 
 
@@ -521,5 +526,3 @@ def render_endpdf_view(request, pk):
 #     template_name = 'teacher/report-mid.html'
 #     model = Student
 #     context_object_name = 'student'
-
-

@@ -18,12 +18,22 @@ Teacher home
 </div>
 <div class="r-center">
 
-        <div class="h-content">
-        Today is {% now "j F Y" %}  <br>
-        You are teaching {{ teacher.course }}. <br>
-        There are {{ student_count }} {{ teacher.course }} students on the {{ teacher.campus }} campus. <br>
-        Awesome.
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="padding: 0.5rem 0 0.5rem 0;">
+                        {{ message }}  
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
+        <div style="padding: 0.5rem 0 0 0">
+        </div>
+        <div class="h-content">
+            Today is {% now "j F Y" %}.  <br>
+            There are {{ student_count }} {{ teacher.course }} students on the {{ teacher.campus }} campus. <br>
+        </div>
+
 </div>
 
 {% endblock content %}

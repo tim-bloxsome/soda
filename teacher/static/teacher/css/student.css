@@ -236,7 +236,6 @@ label {
 	-moz-appearance: none;
 }
 
-
 .sd-form input.button {
     background: #2ba6cb;
     color: white;
@@ -250,6 +249,34 @@ label {
 .sd-form input.button:hover {
     background-color: #258dad;
 }
+
+
+
+.sd-form input.button.hollow {
+  border: 1px solid #2ba6cb;
+  color: #2ba6cb; }
+  .sd-form input.button.hollow, .sd-form input.button.hollow:hover, .sd-form input.button.hollow:focus {
+    background-color: transparent; }
+    .sd-form input.button.hollow.disabled, .sd-form input.button.hollow.disabled:hover, .sd-form input.button.hollow.disabled:focus, .sd-form input.button.hollow[disabled], .sd-form input.button.hollow[disabled]:hover, .sd-form input.button.hollow[disabled]:focus {
+    background-color: transparent; }
+    .sd-form input.button.hollow:hover, .sd-form input.button.hollow:focus {
+    border-color: #165366;
+    color: #165366; }
+    .sd-form input.button.hollow:hover.disabled, .sd-form input.button.hollow:hover[disabled], .sd-form input.button.hollow:focus.disabled, .sd-form input.button.hollow:focus[disabled] {
+      border: 1px solid #2ba6cb;
+      color: #2ba6cb; }
+
+
+.sd-form input.button.hollow.alert {
+    border: 1px solid #c60f13;
+    color: #c60f13; }
+    .sd-form input.button.hollow.alert:hover, .sd-form input.button.hollow.alert:focus {
+      border-color: #63080a;
+      color: #63080a; }
+      .sd-form input.button.hollow.alert:hover.disabled, .sd-form input.button.hollow.alert:hover[disabled], .sd-form input.button.hollow.alert:focus.disabled, .sd-form input.button.hollow.alert:focus[disabled] {
+        border: 1px solid #c60f13;
+        color: #c60f13; }
+
 
 
   input[type=range].sd::-webkit-slider-runnable-track {
@@ -344,6 +371,7 @@ label {
     font-size: inherit;
     line-height: inherit;
     color: inherit;
+    cursor: pointer;
     /* font-weight: normal; */
     /* line-height: 1.5; */
     /* background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>"); */
@@ -361,6 +389,9 @@ label {
       select {
         background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNrEkckNgDAMBBfRkEt0ObRBBdsGXUDgmQfK4XhH2m8czQAAy27R3tsw4Qfe2x8uOO6oYLb6GlOor3GF+swURAOmUJ+RwtEJs9WvTGEYxBXqI1MQAZhCfUQKRzDMVj+TwrAIV6jvSUEkYAr1LSkcyTBb/V+KYfX7xAeusq3sLDtGH3kEGACPWIflNZfhRQAAAABJRU5ErkJggg=="); 
     }}
+select:hover {
+  color: black;
+}
 select:focus {
     outline: none;
     background-color: #fdf6ee;

@@ -1,6 +1,6 @@
 $('form[class=sd-form]').on('submit', function(e) {
   e.preventDefault();
-  submit_button = $(this).find("input[type=submit]");
+  submit_button = $(this).find("#submit");
   saved = $(this).find('#saved')
   
   $.ajax({
@@ -37,7 +37,7 @@ $('form[class=sd-form]').on('submit', function(e) {
   
 //   Make the save button active after any input
 $('form[class=sd-form]').on('input', function() {
-  var submit_button = $(this).find("input[type=submit]");
+  var submit_button = $(this).find("#submit");
   $(submit_button).prop("disabled", false);
 
 });

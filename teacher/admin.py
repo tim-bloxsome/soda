@@ -6,9 +6,15 @@ from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
 
 
-admin.site.site_header = "Soda Admin"
+admin.site.site_header = 'Soda Admin'
+admin.site.index_title = 'Soda Administration'
+admin.site.site_title = 'Soda'
 
-admin.site.register(ExamScore)
+
+@admin.register(ExamScore)
+class ExamScoreAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'exam_name')
+    search_fields = ['exam_name', 'student__first_name', 'student__last_name']
 
 
 @admin.register(Course)
@@ -32,6 +38,7 @@ class ExamTypeAdmin(admin.ModelAdmin):
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
     form = TeacherForm
+    list_display = ('__str__', 'id')
     readonly_fields = ('id',)
 
 
@@ -62,3 +69,5 @@ class StudentResource(resources.ModelResource):
 @admin.register(Student)
 class StudentAdmin(ImportExportModelAdmin):
     resource_class = StudentResource
+    list_display = ('__str__', 'course', 'teacher')
+    search_fields = ['first_name', 'last_name']
