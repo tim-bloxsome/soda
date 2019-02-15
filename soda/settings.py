@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'soda.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'soda',
+        'USER': soda.private.DB_USER,
+        'PASSWORD': soda.private.DB_PASSWORD
     }
 }
 

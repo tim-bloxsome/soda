@@ -90,7 +90,8 @@ class RegistrationForm(UserCreationForm):
             'last_name',
             'email',
             'password1',
-            'password2'
+            'password2',
+            'is_superuser',
         )
 
         def save(self, commit=True):
@@ -98,6 +99,7 @@ class RegistrationForm(UserCreationForm):
             user.first_name = self.cleaned_data['first_name']
             user.last_name = self.cleaned_data['last_name']
             user.email = self.cleaned_data['email']
+            user.is_superuser = self.cleaned_data['is_superuser']
 
             if commit:
                 user.save()

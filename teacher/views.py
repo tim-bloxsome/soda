@@ -28,9 +28,6 @@ from teacher.admin import StudentResource
 """
 
 TODO Need a link to change forgotten passwords
-TODO CSV export for exam scores
-TODO slider input only on handle
-TODO stop admin being added to teachers
 
 """
 

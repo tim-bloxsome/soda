@@ -75,8 +75,8 @@ class Student(models.Model):
     homework = models.PositiveSmallIntegerField(default=90)
     attendance = models.PositiveSmallIntegerField(default=70)
     attitude = models.PositiveSmallIntegerField(default=50)
-    comments = models.TextField(blank=True, null=True)
-    previous = models.TextField(blank=True, null=True)
+    comments = models.TextField(blank=True, null=True, default='')
+    previous = models.TextField(blank=True, null=True, default='')
 
     class Meta:
         verbose_name = 'Student'

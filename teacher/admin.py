@@ -12,10 +12,6 @@ admin.site.site_header = 'Soda Admin'
 admin.site.index_title = 'Soda Administration'
 admin.site.site_title = 'Soda'
 
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
-
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -102,6 +98,11 @@ class UserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'email', 'username', 'password1', 'password2', ),
+            'fields': ('first_name', 'last_name', 'email', 'username', 'password1', 'password2', 'is_superuser',),
         }),
     )
+
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
