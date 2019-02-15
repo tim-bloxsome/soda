@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
 from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class TeacherForm(forms.ModelForm):
@@ -74,38 +76,30 @@ class ExamScoreForm(forms.ModelForm):
             'student',
         )
 
-# class NewPreTestForm(forms.ModelForm):
-#     class Meta:
-#         model = PreTestPrac
-#         fields = ['reading', 'uofe', 'writing', 'listening', 'speaking', 'student']
-#         widgets = {
-#             'reading': forms.NumberInput(attrs={
-#                                    'class': 'score',
-#                                    'placeholder': '36',
-#                                    'id': 'score-re',
-#             }),
-#             'uofe': forms.NumberInput(attrs={
-#                                    'class': 'score',
-#                                    'placeholder': '36',
-#                                    'id': 'score-us'
-#             }),
-#             'writing': forms.NumberInput(attrs={
-#                                    'class': 'score',
-#                                    'placeholder': '5',
-#                                    'id': 'score-wr'
-#             }),
-#             'listening': forms.NumberInput(attrs={
-#                                    'class': 'score',
-#                                    'placeholder': '30',
-#                                    'id': 'score-li'
-#             }),
-#             'speaking': forms.NumberInput(attrs={
-#                                    'class': 'score',
-#                                    'placeholder': '5',
-#                                    'id': 'score-sp'
-#             }),
-#             'student': forms.HiddenInput(attrs={
-#                                    'id': 'student-id'})
-#         }
-# # value="{{ student.id }}
-# # 'autofocus': True}
+
+class RegistrationForm(UserCreationForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2'
+        )
+
+        def save(self, commit=True):
+            user = super(RegistrationForm, self).save(commit=False)
+            user.first_name = self.cleaned_data['first_name']
+            user.last_name = self.cleaned_data['last_name']
+            user.email = self.cleaned_data['email']
+
+            if commit:
+                user.save()
+
+                return User

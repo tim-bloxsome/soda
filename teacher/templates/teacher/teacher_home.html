@@ -10,14 +10,13 @@ Teacher home
 {% endblock head %}
 
 {% block content %}
-<div class="center title">
 
+<div class="center title">
         <div class="r-title">
             Hello {{ user.first_name }}
         </div>
 </div>
 <div class="r-center">
-
         <div class="messages">
             {% if messages %}
                 {% for message in messages %}
@@ -31,9 +30,8 @@ Teacher home
         </div>
         <div class="h-content">
             Today is {% now "j F Y" %}.  <br>
-            There are {{ student_count }} {{ teacher.course }} students on the {{ teacher.campus }} campus. <br>
+            You have {{ student_count }} {{ teacher.course }} students on the {{ teacher.campus }} campus. <br>
         </div>
-
 </div>
 
 {% endblock content %}

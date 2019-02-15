@@ -45,19 +45,6 @@ def delete_student(request, username, pk):
     return render(request, 'teacher/error.html')
 
 
-def csv_upload(request):
-    if request.method == 'POST':
-        student_resource = StudentResource()
-        new_students = request.FILES['myfile']
-        dataset = Dataset().load(new_students.read())
-        result = student_resource.import_data(dataset, dry_run=True)  # Test the data import
-
-        if not result.has_errors():
-            student_resource.import_data(dataset, dry_run=False)  # Actually import now
-
-    return render(request, 'teacher/csv_upload.html')
-
-
 @login_required
 def StudentDetail(request, username, pk):
     student_pk = get_object_or_404(Student, pk=pk)
@@ -74,7 +61,6 @@ def StudentDetail(request, username, pk):
         form = StudentForm(instance=student_pk)
 
     context = {'form': form, 'student': student_pk}
-
     return render(request, 'teacher/student_detail.html', context)
 
 
@@ -520,9 +506,3 @@ def render_endpdf_view(request, pk):
     if pisaStatus.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
-# class MidReportDetailView(DetailView):
-#     template_name = 'teacher/report-mid.html'
-#     model = Student
-#     context_object_name = 'student'

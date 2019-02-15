@@ -46,12 +46,14 @@ class Teacher(models.Model):
 
     @receiver(post_save, sender=User)
     def create_user_teacher(sender, instance, created, **kwargs):
-        if created:
-            Teacher.objects.create(user=instance)
+        if not instance.is_superuser:
+            if created:
+                Teacher.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
     def save_user_teacher(sender, instance, **kwargs):
-        instance.teacher.save()
+        if not instance.is_superuser:
+            instance.teacher.save()
 
     class Meta:
         ordering = ['id']

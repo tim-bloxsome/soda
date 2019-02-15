@@ -1,20 +1,20 @@
 from django.contrib import admin
 from import_export import resources
 from .models import Student, ExamScore, Teacher, ExamType, Campus, Course
-from .forms import TeacherForm
+from .forms import TeacherForm, RegistrationForm
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 
 admin.site.site_header = 'Soda Admin'
 admin.site.index_title = 'Soda Administration'
 admin.site.site_title = 'Soda'
 
-
-@admin.register(ExamScore)
-class ExamScoreAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'exam_name')
-    search_fields = ['exam_name', 'student__first_name', 'student__last_name']
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 @admin.register(Course)
@@ -71,3 +71,37 @@ class StudentAdmin(ImportExportModelAdmin):
     resource_class = StudentResource
     list_display = ('__str__', 'course', 'teacher')
     search_fields = ['first_name', 'last_name']
+
+
+class ExamScoreResource(resources.ModelResource):
+
+    class Meta:
+        model = ExamScore
+        fields = (
+            'exam_name',
+            'reading',
+            'uofe',
+            'writing',
+            'listening',
+            'speaking',
+            'student',
+        )
+
+
+@admin.register(ExamScore)
+class ExamScoreAdmin(ImportExportModelAdmin):
+    resource_class = ExamScoreResource
+    list_display = ('__str__', 'exam_name')
+    search_fields = ['exam_name', 'student__first_name', 'student__last_name']
+
+
+class UserAdmin(UserAdmin):
+    add_form = RegistrationForm
+    prepopulated_fields = {'username': ('first_name', 'last_name', )}
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'email', 'username', 'password1', 'password2', ),
+        }),
+    )

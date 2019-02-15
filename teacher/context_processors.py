@@ -24,22 +24,25 @@ def course_context(request):
     """ Puts teacher specific student list into the context of every page for
     authenticated users only"""
     if request.user.is_authenticated:
-        teacher = request.user.teacher
-        teachers = User.objects.all()
-        courses = Course.objects.all()
-        campuses = Campus.objects.all()
-        course_pk = request.user.teacher.course.pk
-        students = Student.objects.filter(teacher=teacher).order_by('last_name')
-        student_count = Student.objects.filter(teacher=teacher).count()
-        context = {
-            'students': students,
-            'student_count': student_count,
-            'courses': courses,
-            'campuses': campuses,
-            'teachers': teachers,
-            'teacher': teacher
-        }
-        return context
+        if not request.user.is_superuser:
+            teacher = request.user.teacher
+            teachers = Teacher.objects.all()
+            courses = Course.objects.all()
+            campuses = Campus.objects.all()
+            students = Student.objects.filter(teacher=teacher).order_by('last_name')
+            student_count = Student.objects.filter(teacher=teacher).count()
+            context = {
+                'students': students,
+                'student_count': student_count,
+                'courses': courses,
+                'campuses': campuses,
+                'teachers': teachers,
+                'teacher': teacher
+            }
+            return context
+        else:
+            # this is to prevent the NoneType is not iterable error
+            return {}
     else:
         # this is to prevent the NoneType is not iterable error
         return {}
@@ -61,15 +64,3 @@ def exam_type(request):
     else:
         # this is to prevent the NoneType is not iterable error
         return {}
-
-
-# def campus(request):
-#     """ Creates a list of campuses for use in various templates"""
-#     if request.user.is_authenticated:
-#         campuses = Campus.objects.all()
-#         return {'campuses': campuses}
-#     else:
-#         # this is to prevent the NoneType is not iterable error
-#         return {}
-
-# exam_list = ExamType.objects.values('exam_name').distinct().order_by('menu_position')

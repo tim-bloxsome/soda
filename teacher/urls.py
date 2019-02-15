@@ -12,6 +12,4 @@ urlpatterns = [
     path('<str:username>/student/<pk>/', user_views.StudentDetail, name='student-detail'),
     path('student/<pk>/report-mid/pdf/', user_views.render_midpdf_view, name='report-mid'),
     path('student/<pk>/report-end/pdf/', user_views.render_endpdf_view, name='report-end'),
-    # path('student/<pk>/report-mid/', user_views.MidReportDetail, name='mid'),
-    # path('student/<pk>/report-end/', user_views.EndReportDetail, name='end'),
 ]

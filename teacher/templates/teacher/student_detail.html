@@ -38,7 +38,7 @@ Student Details
                         <option value="{{student.campus.pk}}">{{student.campus}}</option>
                 {% for campus in campuses %}
                 {% if  campus != student.campus %}
-                        <option value="{{campus.pk}}"> {{campus.campus_name}}</option>
+                        <option value="{{campus.pk}}"> {{campus}}</option>
                 {% endif %}        
                 {% endfor %}
             </select>
@@ -50,7 +50,7 @@ Student Details
                         <option value="{{student.course.pk}}">{{student.course}}</option>
                 {% for course in courses %}
                 {% if  course != student.course %}
-                        <option value="{{course.pk}}"> {{course.course_name}}</option>
+                        <option value="{{course.pk}}">{{course}}</option>
                 {% endif %}
                 {% endfor %}
             </select>
@@ -62,8 +62,8 @@ Student Details
             <select name="teacher" id ="teacher">
                         <option value="{{student.teacher.pk}}">{{student.teacher}}</option>
                 {% for teacher in teachers %}
-                {% if teacher.pk != student.teacher.pk and teacher.pk != 1 %}
-                        <option value="{{teacher.pk}}">{{teacher.first_name}} {{teacher.last_name}}</option>
+                {% if teacher.pk != student.teacher.pk %}
+                        <option value="{{teacher.pk}}">{{teacher}}</option>
                 {% endif %}        
                 {% endfor %}
             </select>
