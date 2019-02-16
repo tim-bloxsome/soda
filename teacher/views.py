@@ -148,8 +148,8 @@ def render_midpdf_view(request, pk):
         uofe_perc = round((midcourse.uofe / 36) * 100, 0)
         reading_perc = round((midcourse.reading / 36) * 100, 0)
         listening_perc = round((midcourse.listening / 30) * 100, 0)
-        speaking_perc = round((midcourse.speaking / 5) * 100, 0)
-        writing_perc = round((midcourse.writing / 5) * 100, 0)
+        speaking_perc = float(round((midcourse.speaking / 5) * 100, 0))
+        writing_perc = float(round((midcourse.writing / 5) * 100, 0))
         total_perc = round((uofe_perc + reading_perc + listening_perc + speaking_perc + writing_perc) / 5, 0)
     else:
         uofe_perc = 0
@@ -406,8 +406,8 @@ def render_endpdf_view(request, pk):
         pre_uofe_perc = round((precourse.uofe / 36) * 100, 0)
         pre_reading_perc = round((precourse.reading / 36) * 100, 0)
         pre_listening_perc = round((precourse.listening / 30) * 100, 0)
-        pre_speaking_perc = round((precourse.speaking / 5) * 100, 0)
-        pre_writing_perc = round((precourse.writing / 5) * 100, 0)
+        pre_speaking_perc = float(round((precourse.speaking / 5) * 100, 0))
+        pre_writing_perc = float(round((precourse.writing / 5) * 100, 0))
         pre_total_perc = round((pre_uofe_perc + pre_reading_perc + pre_listening_perc + pre_speaking_perc + pre_writing_perc) / 5, 0)
     else:
         pre_uofe_perc = 0
@@ -421,8 +421,8 @@ def render_endpdf_view(request, pk):
         mid_uofe_perc = round((midcourse.uofe / 36) * 100, 0)
         mid_reading_perc = round((midcourse.reading / 36) * 100, 0)
         mid_listening_perc = round((midcourse.listening / 30) * 100, 0)
-        mid_speaking_perc = round((midcourse.speaking / 5) * 100, 0)
-        mid_writing_perc = round((midcourse.writing / 5) * 100, 0)
+        mid_speaking_perc = float(round((midcourse.speaking / 5) * 100, 0))
+        mid_writing_perc = float(round((midcourse.writing / 5) * 100, 0))
         mid_total_perc = round((mid_uofe_perc + mid_reading_perc + mid_listening_perc + mid_speaking_perc + mid_writing_perc) / 5, 0)
     else:
         mid_uofe_perc = 0
@@ -436,8 +436,8 @@ def render_endpdf_view(request, pk):
         end_uofe_perc = round((endcourse.uofe / 36) * 100, 0)
         end_reading_perc = round((endcourse.reading / 36) * 100, 0)
         end_listening_perc = round((endcourse.listening / 30) * 100, 0)
-        end_speaking_perc = round((endcourse.speaking / 5) * 100, 0)
-        end_writing_perc = round((endcourse.writing / 5) * 100, 0)
+        end_speaking_perc = float(round((endcourse.speaking / 5) * 100, 0))
+        end_writing_perc = float(round((endcourse.writing / 5) * 100, 0))
         end_total_perc = round((end_uofe_perc + end_reading_perc + end_listening_perc + end_speaking_perc + end_writing_perc) / 5, 0)
     else:
         end_uofe_perc = 0
