@@ -66,7 +66,7 @@ class StudentResource(resources.ModelResource):
 class StudentAdmin(ImportExportModelAdmin):
     resource_class = StudentResource
     list_display = ('__str__', 'course', 'teacher')
-    search_fields = ['first_name', 'last_name']
+    search_fields = ['first_name', 'last_name', 'course__course_name']
 
 
 class ExamScoreResource(resources.ModelResource):
