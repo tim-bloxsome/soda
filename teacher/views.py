@@ -18,18 +18,10 @@ from xhtml2pdf import pisa
 from tablib import Dataset
 from import_export import resources
 
-
 from teacher.forms import StudentForm, CustomAuthForm, ExamScoreForm
 from teacher.models import Student, ExamType, ExamScore, Teacher, Campus
 import teacher.descriptors as des
 from teacher.admin import StudentResource
-
-
-"""
-
-TODO Need a link to change forgotten passwords
-
-"""
 
 
 def delete_student(request, username, pk):

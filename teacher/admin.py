@@ -43,6 +43,8 @@ class StudentResource(resources.ModelResource):
     class Meta:
         model = Student
         import_id_fields = ('stu_num',)
+        skip_unchanged = True
+        report_skipped = False
         fields = (
             'stu_num',
             'last_name',
